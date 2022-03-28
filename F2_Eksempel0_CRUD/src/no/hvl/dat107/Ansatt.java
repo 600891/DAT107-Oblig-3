@@ -34,6 +34,13 @@ public class Ansatt {
 		this.mnd_lonn = mnd_lonn;					this.avd_fk = avd_fk;				
 	}
 	
+	public boolean erSjef() {
+		if(this.equals(getAvd().getSjef())){
+			return true;
+		}
+		return false;
+	}
+	
 	public Integer getAnsatt_id() {
 		return ansatt_id;
 	}
@@ -96,6 +103,8 @@ public class Ansatt {
 
 	@Override
 	public String toString() {
-		return String.format("Ansatt: ansatt_id=%s, brukernavn=%s, fornavn=%s, etternavn=%s, ans_dato=%s, stilling=%s, mnd_lonn=%s, avd_fk=%s", ansatt_id, brukernavn, fornavn, etternavn, ans_dato, stilling, mnd_lonn, avd_fk.toString());
+		return String.format("Ansatt-id = %s \t Brukernavn = %s \t Fornavn = %s \t Etternavn = %s \t Ansettelsesdato = %s \t Stilling = %s \t"
+				+ " Månedslønn = %s \t Avdeling = %s", 
+				ansatt_id, brukernavn, fornavn, etternavn, ans_dato, stilling, mnd_lonn, avd_fk.toString());
 	}
 }

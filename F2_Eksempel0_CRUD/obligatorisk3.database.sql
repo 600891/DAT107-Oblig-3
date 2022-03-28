@@ -52,11 +52,11 @@ CREATE TABLE prosjektDeltaker
 INSERT INTO
   ansatt(brukernavn, fornavn, etternavn, ans_dato, stilling, mnd_lonn, avd_fk)
 VALUES
-    ('NKRI', 'Nora', 'Kristiansen', '2000-07-17', 'Frilanseren', 50000, 1),
+    ('NKRI', 'Nora', 'Kristiansen', '2000-07-17', 'Frilanseren', 50000, 3),
     ('SKS', 'Siri', 'Kaarvik Slyk', '2001-03-10', 'Macekspert', 50000, 2),
-    ('ASAE', 'Aurora', 'Sætran', '1800-08-20', 'Hundegal', 50000, 3),
+    ('ASAE', 'Aurora', 'Sætran', '1800-08-20', 'Hundegal', 50000, 1),
     ('MEJE', 'Marie', 'Eun Jee Eide', '2005-10-20', 'Sjef', 50000, 2),
-    ('OBS', 'Oda', 'Bastesen Storebø', '2010-04-20', 'Iskaffesluker', 50000, 1);
+    ('OBS', 'Oda', 'Bastesen Storebø', '2010-04-20', 'Iskaffesluker', 50000, 3);
 
     
 INSERT INTO

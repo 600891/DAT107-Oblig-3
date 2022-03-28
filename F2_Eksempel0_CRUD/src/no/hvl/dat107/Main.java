@@ -5,8 +5,7 @@ import java.sql.Date;
 
 public class Main {
 	
-	private static AnsattDAO ansattHjelper = new AnsattDAO();
-	private static AvdelingDAO avdHjelper = new AvdelingDAO();
+	private static AnsattAvdelingDAO ansAvdDAO = new AnsattAvdelingDAO();
 	
 	public static void main(String[] args) {
 		

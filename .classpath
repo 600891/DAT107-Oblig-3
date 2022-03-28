@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="F2_Eksempel0_CRUD/src"/>
+	<classpathentry kind="src" path="F2_Eksempel0_CRUD/test"/>
+	<classpathentry kind="lib" path="F2_Eksempel0_CRUD/lib/eclipselink-2.7.10.jar"/>
+	<classpathentry kind="lib" path="F2_Eksempel0_CRUD/lib/javax.persistence-api-2.2.jar"/>
+	<classpathentry kind="lib" path="F2_Eksempel0_CRUD/lib/postgresql-42.3.3.jar"/>
+	<classpathentry kind="output" path="F2_Eksempel0_CRUD/bin"/>
+</classpath>

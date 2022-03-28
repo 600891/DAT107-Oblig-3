@@ -42,6 +42,12 @@ public class Avdeling {
 		ansatt.setAvd(null);
 	}
 	
+	
+	
+	public List<Ansatt> getAnsatte(){
+		return ansatte;
+	}
+	
 	public Integer getAvd_id() {
 		return avd_id;
 	}
