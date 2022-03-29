@@ -74,6 +74,31 @@ public class AnsattAvdelingDAO {
 		return a;
 	}
 	
+	//Lag nytt prosjekt
+	public Ansatt lagNyttProsjekt(String navn, String beskrivelse) {
+		
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		
+		Prosjekt p = null;
+		
+		try {
+			tx.begin();
+			p = new Prosjekt(navn, beskrivelse);
+			em.persist(p);
+			
+			tx.commit();
+			
+		} catch (Throwable e) {
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			em.close();
+		}
+		
+		return p;
+	}
+	
 	//------ ANSATT-METODER ------//
 	
 	//Finne ansatt med bruk av ID
@@ -231,4 +256,32 @@ public class AnsattAvdelingDAO {
 			System.out.format("%20s%20s%20s%20s%20s%20s%20s%n", rad);
 		}
 	}
+	
+	//---- PROSJEKT-METODER ----
+	
+    public Prosjekt finnProsjektMedId(int id) {
+
+        EntityManager em = emf.createEntityManager();
+
+        Prosjekt prosjekt = null;
+        try {
+            prosjekt = em.find(Prosjekt.class, id);
+        } finally {
+            em.close();
+        }
+        return prosjekt;
+    }
+    
+    public ProsjektDeltaker finnProsjektDeltaker(int deltaker_id) {
+    	EntityManager em = emf.createEntityManager();
+    	
+    	ProsjektDeltaker deltaker = null;
+    	try {
+    		deltaker = em.find(ProsjektDeltaker.class, deltaker_id);
+    	} finally {
+    		em.close();
+    	}
+    	
+    	return deltaker;
+    }
 }

@@ -25,7 +25,11 @@ public class Meny {
             System.out.println("(8) List ut alle ansatte på en avdeling");
             System.out.println("(9) Oppdatere avdelingen til en ansatt");
             System.out.println("(10) Legg til en ny avdeling");
-            System.out.println("(11) Avslutt");
+            System.out.println("(11) Legg til et nytt prosjekt");
+            System.out.println("(12) Registrer prosjektdeltagelse");
+            System.out.println("(13) Føre timer i et prosjekt for en ansatt");
+            System.out.println("(14) Vis info om et prosjekt");
+            System.out.println("(15) Avslutt");
             System.out.println("----------------------");
             System.out.print("Vennligst oppgi ønsket menyvalg:");
 
@@ -63,11 +67,23 @@ public class Meny {
                 case 10:
                     leggTilAvdeling();
                     break;
+                case 11:
+                    leggTilProsjekt();
+                    break;
+                case 12:
+                    leggTilProsjektDeltaker();
+                    break;
+                case 13:
+                    //leggTilAvdeling();
+                    break;
+                case 14:
+                    //leggTilAvdeling();
+                    break;
                 default:
                     break;
             }
 
-        } while (input != 11);
+        } while (input != 15);
 
         System.exit(1);
     }
@@ -203,14 +219,49 @@ public class Meny {
 		enterTilbake();
 	}
 	
-	 private void enterTilbake()
-	 { 
-	        System.out.println("Trykk Enter for å komme tilbake til menyen...");
-	        try
-	        {
-	            System.in.read();
-	        }  
-	        catch(Exception e)
-	        {}  
-	 }
+	private void leggTilProsjekt() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Vennligst skriv inn navnet til det nye prosjektet: ");
+		String navn = scanner.nextLine();
+		System.out.println("Vennligst gi en kort beskrivelse av prosjektet: ");
+		String beskrivelse = scanner.nextLine();
+		ansAvdDAO.lagNyttProsjekt(navn, beskrivelse);
+		System.out.println("Prosjektet ble lagt til.");
+		enterTilbake();
+	}
+	
+	private void leggTilProsjektDeltaker() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Vennligst skriv inn ID-en til den ansatte du vil legge til i prosjektet: ");
+		Ansatt ansatt = ansAvdDAO.finnAnsattMedId(scanner.nextInt());
+		System.out.println("Vennligst skriv inn ID-en til prosjektet: ");
+		Prosjekt prosjekt = ansAvdDAO.finnProsjektMedId(scanner.nextInt());
+		ProsjektDeltaker deltaker = new ProsjektDeltaker(ansatt, prosjekt, 0);
+		System.out.println("Den ansatte ble lagt til i prosjektet.");
+		enterTilbake();
+	}
+	
+	private void foreTimer() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Skriv deltaker-IDen til den deltakeren du vil føre timer på: ");
+		ProsjektDeltaker deltaker = ansAvdDAO.finnProsjektDeltaker(scanner.nextInt());
+		System.out.println("Hvor mange timer vil du føre? (X.XX)");
+		float timer = scanner.nextFloat();
+		float registrerteTimer = deltaker.getTimer();
+		deltaker.setTimer(registrerteTimer += timer);
+		enterTilbake();
+	}
+	
+	
+	
+	private void enterTilbake()
+	{ 
+	       System.out.println("Trykk Enter for å komme tilbake til menyen...");
+	       try
+	       {
+	           System.in.read();
+	       }  
+	       catch(Exception e)
+	       {}  
+	}
 }

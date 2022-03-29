@@ -2,6 +2,7 @@ package no.hvl.dat107;
 
 import java.sql.Date;
 import java.sql.Statement;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -20,6 +21,9 @@ public class Ansatt {
 	private Date ans_dato;
 	private String stilling;
 	private double mnd_lonn;
+	
+    @OneToMany(mappedBy="ansatt_id")
+    private List<ProsjektDeltaker> deltagelser;
 	
 	@ManyToOne
 	@JoinColumn(name = "avd_fk", referencedColumnName = "avd_id")
@@ -40,6 +44,14 @@ public class Ansatt {
 		}
 		return false;
 	}
+	
+    public void leggTilProsjektdeltagelse(ProsjektDeltaker deltaker) {
+        deltagelser.add(deltaker);
+    }
+
+    public void fjernProsjektdeltagelse(ProsjektDeltaker deltaker) {
+        deltagelser.remove(deltaker);
+    }
 	
 	public Integer getAnsatt_id() {
 		return ansatt_id;
